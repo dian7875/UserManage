@@ -3,7 +3,7 @@ import { Card } from "flowbite-react";
 const UserInfo = () => {
   return (
     <>
-      <Card className="w-96">
+      <Card className="w-96 hover:scale-105">
         <h5 className=" text-center text-2xl font-bold">Usuario Actual</h5>
 
         <figure className=" flex items-center justify-center">

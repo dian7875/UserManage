@@ -21,9 +21,6 @@ const Navbar = ({
           <Sidebar className="[&>div]:bg-transparent w-full [&>div]:p-0 pt-3 ">
             <Sidebar.ItemGroup>
               <Sidebar.Item href="MiCuenta">Cuenta</Sidebar.Item>
-              <Sidebar.Item href="CambiarContraseña">
-                Editar informacion de cuenta
-              </Sidebar.Item>
             </Sidebar.ItemGroup>
             <Sidebar.ItemGroup>
               <Sidebar.Item href="Lista_de_Usuarios">
