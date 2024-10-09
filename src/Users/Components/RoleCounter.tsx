@@ -1,6 +1,19 @@
 import { Card } from "flowbite-react";
 import { FaUsersGear } from "react-icons/fa6";
+import { useQuery } from "react-query";
+import { GetRolesList } from "../Services/SvRols";
+import { Role } from "../Types/Roles";
 const RoleCounter = () => {
+  const { data: Roles } = useQuery<Role[], Error>(
+    ["RoleList", Date],
+    () => GetRolesList(),
+    {
+      staleTime: 600,
+    }
+  );
+
+  const counter = Roles?.length;
+
   return (
     <>
       <Card className=" hover:scale-105">
@@ -8,7 +21,10 @@ const RoleCounter = () => {
           <FaUsersGear size={120} />
           <div>
             <h5 className=" font-bold text-xl">Conteo de roles</h5>
-            <h5 className=" font-bold text-xl">0</h5>
+            <h5 className=" font-bold text-xl">
+              {" "}
+              {counter && counter > 0 ? counter : "0"}{" "}
+            </h5>
           </div>
         </div>
       </Card>

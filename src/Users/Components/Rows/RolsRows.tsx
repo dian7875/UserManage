@@ -6,17 +6,18 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import MDDelete from "../Modals/Roles/MDDelete";
 import MDEditInfo from "../Modals/Roles/MDEditInfo";
 import MDEditPermissionsList from "../Modals/Roles/MDEditPermissionsList";
+import { Role } from "../../Types/Roles";
 
-const RolsRows = () => {
+const RolsRows = ({ Role }: { Role: Role }) => {
   const [openEL, setOpenEL] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [openE, setOpenE] = useState(false);
   return (
     <>
       <Table.Row className="h-20 ">
-        <Table.Cell>1</Table.Cell>
-        <Table.Cell>Admin</Table.Cell>
-        <Table.Cell>For all</Table.Cell>
+        <Table.Cell>{Role.id} </Table.Cell>
+        <Table.Cell>{Role.name} </Table.Cell>
+        <Table.Cell>Pendiente</Table.Cell>
         <Table.Cell>
           <div className="flex items-center justify-center gap-5">
             <button
@@ -46,8 +47,8 @@ const RolsRows = () => {
           </div>
         </Table.Cell>
       </Table.Row>
-      <MDDelete open={openD} setOpen={setOpenD} />
-      <MDEditInfo open={openE} setOpen={setOpenE} />
+      <MDDelete open={openD} setOpen={setOpenD} id={Role.id} />
+      <MDEditInfo open={openE} setOpen={setOpenE} Role={Role} />
       <MDEditPermissionsList open={openEL} setOpen={setOpenEL} />
     </>
   );

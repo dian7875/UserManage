@@ -14,7 +14,7 @@ const MDEditPermissionsList = ({
       <Modal.Body className=" flex flex-col gap-4">
         <div className=" flex items-center gap-2">
           <Checkbox />
-          <Label value="Permiso" />
+          <Label value="Pendientes" />
         </div>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center gap-5">

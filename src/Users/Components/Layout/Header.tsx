@@ -5,6 +5,11 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   const [openSide, setOpenSide] = useState<boolean>(false);
+
+  const goToLogin = () => {
+    window.location.href = "https://indentity-server-login.vercel.app/";
+  };
+
   return (
     <>
       <header
@@ -14,10 +19,10 @@ const Header = () => {
         <div
           className="text-white ml-4 hover:scale-105 cursor-pointer"
           onClick={() => setOpenSide(true)}
-          >
+        >
           <GiHamburgerMenu size={40} />
         </div>
-          <DarkThemeToggle/>
+        <DarkThemeToggle />
         <div className="mr-5">
           <Dropdown
             arrowIcon={false}
@@ -31,7 +36,7 @@ const Header = () => {
             <Dropdown.Item>Dashboard</Dropdown.Item>
             <Dropdown.Item>Editar Perfil</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>Cerrar Sesión</Dropdown.Item>
+            <Dropdown.Item onClick={goToLogin}>Iniciar Sesión</Dropdown.Item>
           </Dropdown>
         </div>
       </header>
