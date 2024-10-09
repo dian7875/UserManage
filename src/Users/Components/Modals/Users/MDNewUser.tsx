@@ -2,6 +2,9 @@ import { Button, FloatingLabel, Modal, Select } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import { User } from "../../../Types/User";
+import UseNewUser from "../../../Hooks/User/UseNewUser";
+import OPTRole from "../../OPTRole";
 
 const MDNewUser = ({
   open,
@@ -10,16 +13,28 @@ const MDNewUser = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { register, reset, handleSubmit } = useForm<User>();
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const { register } = useForm();
+  const { mutate: createUser } = UseNewUser();
+
+  const onSubmit = async (data: User) => {
+    createUser(data, {
+      onSuccess: () => {
+        setOpen(false);
+        reset();
+      },
+    });
+  };
+
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
       <Modal.Header>Añadir nuevo usuario</Modal.Header>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <fieldset className=" grid grid-cols-2 gap-3">
             <div>
@@ -44,7 +59,7 @@ const MDNewUser = ({
                 required
                 variant="outlined"
                 label="Apellido"
-                {...register("lastName")}
+                {...register("lastName1")}
               />
             </div>
             <div>
@@ -111,11 +126,8 @@ const MDNewUser = ({
               </button>
             </div>
             <div>
-              <Select className="custom-Select" required {...register("role")}>
-                <option value="">Rol</option>
-                <option value="1">Admin</option>
-                <option value="2">Vendedor</option>
-                <option value="3">Usuario</option>
+              <Select className="custom-Select" required {...register("rolId")}>
+                <OPTRole />
               </Select>
             </div>
           </fieldset>

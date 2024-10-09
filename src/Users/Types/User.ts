@@ -5,7 +5,9 @@ export type User = {
     email: string;
     phone: string;
     address: string;
-    lastName: string;
+    lastName1: string;
     lastName2: string;
+    password:string;
     birthDate: Date;
+    rolId:number
   };
