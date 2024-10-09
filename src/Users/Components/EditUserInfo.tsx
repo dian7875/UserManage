@@ -1,8 +1,8 @@
 import { Card, Button } from "flowbite-react";
-import MDVerifyPassword from "./Modals/MDVerifyPassword";
+import MDVerifyPassword from "./Modals/Users/MDVerifyPassword";
 import { useState } from "react";
-import MDEditContacs from "./Modals/MDEditContacs";
-import MDEditGeneralInfo from "./Modals/MDEditGeneralInfo";
+import MDEditContacs from "./Modals/Users/MDEditContacs";
+import MDEditGeneralInfo from "./Modals/Users/MDEditGeneralInfo";
 
 const EditUserInfo = () => {
   const [openG, setOpenG] = useState<boolean>(false);
@@ -11,7 +11,10 @@ const EditUserInfo = () => {
 
   return (
     <div>
-      <div className=" w-full flex items-center justify-center">
+      <div
+        className=" w-full flex items-center justify-center
+       dark:text-white "
+      >
         <div className=" w-4/5 flex flex-col gap-6 justify-center">
           <fieldset className="mt-10">
             <legend className=" font-bold text-2xl">Información General</legend>

@@ -1,4 +1,4 @@
-import { Avatar, Dropdown } from "flowbite-react";
+import { Avatar, DarkThemeToggle, Dropdown } from "flowbite-react";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "./Navbar";
@@ -7,13 +7,17 @@ const Header = () => {
   const [openSide, setOpenSide] = useState<boolean>(false);
   return (
     <>
-      <header className=" flex items-center justify-between w-full h-20 bg-black sticky">
+      <header
+        className=" flex items-center justify-between w-full h-20 bg-black sticky
+       dark:bg-gray-900"
+      >
         <div
           className="text-white ml-4 hover:scale-105 cursor-pointer"
           onClick={() => setOpenSide(true)}
-        >
+          >
           <GiHamburgerMenu size={40} />
         </div>
+          <DarkThemeToggle/>
         <div className="mr-5">
           <Dropdown
             arrowIcon={false}

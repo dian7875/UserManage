@@ -7,6 +7,14 @@
 
 }
 
+.dark{
+  background-color: rgb(50, 51, 61);
+  color: white;
+}
+
+.dark form label {
+  background-color: rgb(55 63 79 / 96%) !important;
+}
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -14,7 +22,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.custom-Select  select{
+.custom-Select select{
   padding: 0.81rem;
 }
 
