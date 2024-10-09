@@ -3,6 +3,7 @@ import Layout from "./Users/Components/Layout/Layout";
 import Home from "./Users/Screens/Home";
 import UserAccount from "./Users/Screens/UserAccount";
 import UserList from "./Users/Screens/UserList";
+import RollLists from "./Users/Screens/RollLists";
 
 const Routes = createBrowserRouter([
   {
@@ -23,10 +24,11 @@ const Routes = createBrowserRouter([
       },
       {
         path: "Lista_de_Usuarios",
-        element: <UserList/>
+        element: <UserList />,
       },
       {
         path: "Lista_de_Roles",
+        element: <RollLists />,
       },
       {
         path: "Ayuda",
