@@ -1,9 +1,9 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Layout from "./Users/Components/Layout/Layout";
-import Home from "./Users/Screens/Home";
-import UserAccount from "./Users/Screens/UserAccount";
-import UserList from "./Users/Screens/UserList";
-import RollLists from "./Users/Screens/RollLists";
+import Layout from "./Components/Layout/Layout";
+import Home from "./Screens/Home";
+import RollLists from "./Features/Role/Components/RollLists";
+import UserAccount from "./Features/User/Screens/UserAccount";
+import UserList from "./Features/User/Screens/UserList";
 
 const Routes = createBrowserRouter([
   {
