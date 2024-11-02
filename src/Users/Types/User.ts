@@ -5,9 +5,14 @@ export type User = {
     email: string;
     phone: string;
     address: string;
-    lastName1: string;
-    lastName2: string;
+    lastname1: string;
+    lastname2: string;
     password:string;
     birthDate: Date;
     rolId:number
+  };
+
+export type EditUserRole= {
+    id: number;
+    roleId:number
   };

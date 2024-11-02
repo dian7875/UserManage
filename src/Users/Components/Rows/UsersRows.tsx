@@ -5,21 +5,27 @@ import MDEditUserRol from "../Modals/Users/MDEditUserRol";
 import { TbUserUp, TbUserX } from "react-icons/tb";
 import MDUpUser from "../Modals/Users/MDUpUser";
 import MDDowUser from "../Modals/Users/MDDowUser";
+import { User } from "../../Types/User";
 
-const UsersRows = () => {
+const UsersRows = ({ User }: { User: User }) => {
   const [openE, setOpenE] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [openU, setOpenU] = useState(false);
+  console.table(User)
   return (
     <>
       <Table.Row className="h-20 ">
-        <Table.Cell>1</Table.Cell>
-        <Table.Cell>504420813</Table.Cell>
-        <Table.Cell>Dian Adrian</Table.Cell>
-        <Table.Cell>Aguilar Diaz</Table.Cell>
-        <Table.Cell>61968116</Table.Cell>
-        <Table.Cell>Admin</Table.Cell>
-        <Table.Cell>2/2/2002</Table.Cell>
+        <Table.Cell>{User.id} </Table.Cell>
+        <Table.Cell>{User.cedula}</Table.Cell>
+        <Table.Cell>{User.name}</Table.Cell>
+        <Table.Cell>
+          {User.lastname1}
+          {" "}
+          {User.lastname2}{" "}
+        </Table.Cell>
+        <Table.Cell>{User.phone} </Table.Cell>
+        <Table.Cell>Pendiente</Table.Cell>
+        <Table.Cell>Pendiente</Table.Cell>
         <Table.Cell>
           <Checkbox checked readOnly />
         </Table.Cell>
