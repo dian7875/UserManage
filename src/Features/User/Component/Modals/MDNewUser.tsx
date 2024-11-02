@@ -2,9 +2,9 @@ import { Button, FloatingLabel, Modal, Select } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
-import { User } from "../../../Features/User/Services/User";
-import UseNewUser from "../../../Features/User/Hooks/UseNewUser";
-import OPTRole from "../../OPTRole";
+import { User } from "../../Services/User";
+import UseNewUser from "../../Hooks/UseNewUser";
+import OPTRole from "../../../Role/Components/OPTRole";
 
 const MDNewUser = ({
   open,

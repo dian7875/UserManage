@@ -1,9 +1,10 @@
 import { Breadcrumb, Button, TextInput } from "flowbite-react";
 import { FaSearchengin } from "react-icons/fa";
 import { useState } from "react";
-import { Homecrumbs, UserListscrumbs, Userscrumbs } from "../../../Components/Breadcrumbs";
-import MDNewUser from "../Component/Modals/MDNewUser";
-import UsersTable from "../Component/UsersTable";
+import { Homecrumbs, Userscrumbs, UserListscrumbs } from "../../../Components/Breadcrumbs";
+import MDNewUser from "../../../Features/User/Component/Modals/MDNewUser";
+import UsersTable from "../../../Features/User/Component/UsersTable";
+
 
 const UserList = () => {
   const [open, setOpen] = useState<boolean>(false);

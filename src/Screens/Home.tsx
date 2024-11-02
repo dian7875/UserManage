@@ -1,8 +1,8 @@
 import { Breadcrumb } from "flowbite-react";
 import { Homecrumbs } from "../Components/Breadcrumbs";
-import UserInfo from "../Components/UserInfo";
-import UserCounter from "../Components/UserCounter";
-import RoleCounter from "../Components/RoleCounter";
+import UserInfo from "../Features/User/Component/UserInfo";
+import UserCounter from "../Features/User/Component/UserCounter";
+import RoleCounter from "../Features/Role/Components/RoleCounter";
 
 const Home = () => {
   return (

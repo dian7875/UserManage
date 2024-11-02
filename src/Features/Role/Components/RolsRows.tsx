@@ -3,10 +3,10 @@ import { useState } from "react";
 import { LuFileEdit } from "react-icons/lu";
 import { CiBoxList } from "react-icons/ci";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-import MDDelete from "../Modals/Roles/MDDelete";
-import MDEditInfo from "../Modals/Roles/MDEditInfo";
-import MDEditPermissionsList from "../Modals/Roles/MDEditPermissionsList";
-import { Role } from "../../Features/Role/Types/Roles";
+import MDDelete from "./Modals/MDDelete";
+import MDEditInfo from "./Modals/MDEditInfo";
+import MDEditPermissionsList from "./Modals/MDEditPermissionsList";
+import { Role } from "../Types/Roles";
 
 const RolsRows = ({ Role }: { Role: Role }) => {
   const [openEL, setOpenEL] = useState(false);

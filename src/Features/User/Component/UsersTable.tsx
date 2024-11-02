@@ -1,10 +1,10 @@
 import { Pagination, Table } from "flowbite-react";
-import UsersRows from "../Rows/UsersRows";
+import UsersRows from "./UsersRows";
 import { useState } from "react";
-import SltLimit from "../SltLimit";
-import { User } from "../../Features/User/Services/User";
+import SltLimit from "../../../Components/SltLimit";
+import { User } from "../Services/User";
 import { useQuery } from "react-query";
-import { GetUserList } from "../../Features/User/Services/SvUsers";
+import { GetUserList } from "../Services/SvUsers";
 
 const UsersTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);

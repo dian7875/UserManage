@@ -2,8 +2,8 @@ import { Breadcrumb, Button, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { FaSearchengin } from "react-icons/fa";
 import { Homecrumbs, Rolescrumbs, RolListscrumbs } from "../../../Components/Breadcrumbs";
-import MDNewRol from "../../../Components/Modals/Roles/MDNewRol";
-import RollTable from "../../../Components/Tables/RollTable";
+import MDNewRol from "./Modals/MDNewRol";
+import RollTable from "./RollTable";
 
 const RollLists = () => {
   const [open, setOpen] = useState<boolean>(false);

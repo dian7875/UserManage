@@ -1,8 +1,8 @@
 import { Card } from "flowbite-react";
 import { FaUsersGear } from "react-icons/fa6";
 import { useQuery } from "react-query";
-import { GetRolesList } from "../Features/Role/Services/SvRols";
-import { Role } from "../Features/Role/Types/Roles";
+import { GetRolesList } from "../Services/SvRols";
+import { Role } from "../Types/Roles";
 const RoleCounter = () => {
   const { data: Roles } = useQuery<Role[], Error>(
     ["RoleList", Date],

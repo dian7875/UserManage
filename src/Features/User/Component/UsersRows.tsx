@@ -1,11 +1,11 @@
 import { Table, Checkbox } from "flowbite-react";
 import { useState } from "react";
 import { TbEditCircle } from "react-icons/tb";
-import MDEditUserRol from "../Modals/Users/MDEditUserRol";
+import MDEditUserRol from "./Modals/MDEditUserRol";
 import { TbUserUp, TbUserX } from "react-icons/tb";
-import MDUpUser from "../Modals/Users/MDUpUser";
-import MDDowUser from "../Modals/Users/MDDowUser";
-import { User } from "../../Features/User/Services/User";
+import MDUpUser from "./Modals/MDUpUser";
+import MDDowUser from "./Modals/MDDowUser";
+import { User } from "../Services/User";
 
 const UsersRows = ({ User }: { User: User }) => {
   const [openE, setOpenE] = useState(false);

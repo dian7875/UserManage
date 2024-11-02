@@ -1,8 +1,8 @@
 import { Card, Button } from "flowbite-react";
-import MDVerifyPassword from "./Modals/Users/MDVerifyPassword";
 import { useState } from "react";
-import MDEditContacs from "./Modals/Users/MDEditContacs";
-import MDEditGeneralInfo from "./Modals/Users/MDEditGeneralInfo";
+import MDEditContacs from "./Modals/MDEditContacs";
+import MDEditGeneralInfo from "./Modals/MDEditGeneralInfo";
+import MDVerifyPassword from "./Modals/MDVerifyPassword";
 
 const EditUserInfo = () => {
   const [openG, setOpenG] = useState<boolean>(false);

@@ -1,10 +1,10 @@
 import { Table, Pagination } from "flowbite-react";
 import { useState } from "react";
-import SltLimit from "../SltLimit";
-import RolsRows from "../Rows/RolsRows";
-import { Role } from "../../Features/Role/Types/Roles";
 import { useQuery } from "react-query";
-import { GetRolesList } from "../../Features/Role/Services/SvRols";
+import SltLimit from "../../../Components/SltLimit";
+import { GetRolesList } from "../Services/SvRols";
+import { Role } from "../Types/Roles";
+import RolsRows from "./RolsRows";
 
 const RollTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);

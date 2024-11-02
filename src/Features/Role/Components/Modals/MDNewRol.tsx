@@ -1,8 +1,8 @@
 import { Modal, Button, FloatingLabel } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
-import { Role } from "../../../Features/Role/Types/Roles";
-import UseCreateNewRole from "../../../Features/Role/Screens/Hooks/UseCreateNewRole";
+import { Role } from "../../Types/Roles";
+import UseCreateNewRole from "../../Screens/Hooks/UseCreateNewRole";
 
 const MDNewRol = ({
   open,

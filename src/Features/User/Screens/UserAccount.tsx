@@ -1,6 +1,6 @@
 import { Breadcrumb } from "flowbite-react";
 import { Homecrumbs } from "../../../Components/Breadcrumbs";
-import EditUserInfo from "../../../Components/EditUserInfo";
+import EditUserInfo from "../Component/EditUserInfo";
 
 
 const UserAccount = () => {
