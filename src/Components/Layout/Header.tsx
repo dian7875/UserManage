@@ -2,19 +2,17 @@ import { Avatar, DarkThemeToggle, Dropdown } from "flowbite-react";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "./Navbar";
-import { useLocation } from "react-router";
 
 const Header = () => {
   const [openSide, setOpenSide] = useState<boolean>(false);
 
-  const logginURL =  import.meta.env.VITE_API_AUTH_URL;
-
-  const location = useLocation();
+  const logginURL = import.meta.env.VITE_API_AUTH_URL;
+  const ClientURL = import.meta.env.VITE_API_CLIENT_URL;
 
   const goToLogin = () => {
-    const params = new URLSearchParams(location.search);
-    const redirectUrl = params.get("redirect") || "";
-    window.location.href = `${logginURL}/?redirect=${encodeURIComponent(redirectUrl)}`;
+    window.location.href = `${logginURL}/?redirect=${encodeURIComponent(
+      ClientURL
+    )}`;
   };
   return (
     <>
