@@ -1,26 +1,29 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseDeleteUser from "../../Hooks/UseDeleteUser";
+import { disableUser } from "../../Services/SvUsers";
+import { useQueryClient } from "react-query";
 
 const MDDowUser = ({
   open,
   setOpen,
-  id
+  userId
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  id:number
+  userId:number
 }) => {
 
-  const { mutate: deleteRole } = UseDeleteUser();
+  const queryClient = useQueryClient(); 
 
-  const onConfirm = (id:number) => {
-    deleteRole(id, {
-      onSuccess: () => {
-        setOpen(false);
-      },
-    });
+  const onConfirm = async (userId: number) => {
+    try {
+      await disableUser(userId);
+      setOpen(false);
+      queryClient.invalidateQueries('UserList');
+    } catch (error) {
+      console.error("Error al deshabilitar usuario:", error);
+    }
   };
 
 
@@ -34,7 +37,7 @@ const MDDowUser = ({
         <Button color="gray" tabIndex={2} onClick={() => setOpen(false)}>
           Cancelar
         </Button>
-        <Button color="dark" type="submit" onClick={()=>onConfirm(id)}>
+        <Button color="dark" type="submit" onClick={()=>onConfirm(userId)}>
           Confirmar
         </Button>
       </Modal.Footer>

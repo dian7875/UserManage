@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { GetRolesList } from "../Services/SvRols";
-import { Role } from "../Types/Roles";
+import { RolesResponse } from "../Types/Roles";
 
 const OPTRole = () => {
-  const { data: Roles } = useQuery<Role[], Error>(
+  const { data: rolesData } = useQuery<RolesResponse, Error>(
     ["RoleList", Date],
     () => GetRolesList(),
     {
@@ -14,7 +14,7 @@ const OPTRole = () => {
   return (
     <>
       <option value="">Seleccione un rol</option>
-      {Roles?.map((role) => (
+      {rolesData?.roles.map((role) => (
         <option value={role.id}> {role.name} </option>
       ))}
     </>

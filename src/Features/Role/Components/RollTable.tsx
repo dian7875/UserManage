@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import SltLimit from "../../../Components/SltLimit";
 import { GetRolesList } from "../Services/SvRols";
-import { Role } from "../Types/Roles";
+import { RolesResponse } from "../Types/Roles";
 import RolsRows from "./RolsRows";
 
 const RollTable = () => {
@@ -13,9 +13,9 @@ const RollTable = () => {
     setCurrentPage(page);
   };
 
-  const { data: Roles } = useQuery<Role[], Error>(
-    ["RoleList", Date],
-    () => GetRolesList(),
+  const { data: rolesData } = useQuery<RolesResponse, Error>(
+    ["RoleList", currentPage],
+    () => GetRolesList(currentPage),
     {
       staleTime: 600,
     }
@@ -23,7 +23,7 @@ const RollTable = () => {
 
   return (
     <>
-      {Roles && Roles.length == 0 ? (
+      {rolesData && rolesData.roles.length == 0 ? (
         <span className="h-96 items-center justify-center flex">
           No existen Roles
         </span>
@@ -37,7 +37,7 @@ const RollTable = () => {
               <Table.HeadCell>Acciones</Table.HeadCell>
             </Table.Head>
             <Table.Body className="h-96 dark:bg-gray-800">
-              {Roles?.map((Role) => (
+              {rolesData?.roles.map((Role) => (
                 <RolsRows key={Role.id} Role={Role} />
               ))}
             </Table.Body>
