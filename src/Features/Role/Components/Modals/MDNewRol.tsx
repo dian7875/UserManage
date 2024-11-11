@@ -1,7 +1,7 @@
 import { Modal, Button, FloatingLabel } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
-import { Role } from "../../Types/Roles";
+import { roles } from "../../Types/Roles";
 import UseCreateNewRole from "../../Screens/Hooks/UseCreateNewRole";
 
 const MDNewRol = ({
@@ -11,11 +11,11 @@ const MDNewRol = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, handleSubmit, reset } = useForm<Role>();
+  const { register, handleSubmit, reset } = useForm<roles>();
 
   const { mutate: createRole } = UseCreateNewRole();
 
-  const onSubmit = (data: Role) => {
+  const onSubmit = (data: roles) => {
     createRole(data, {
       onSuccess: () => {
         setOpen(false);

@@ -2,9 +2,9 @@ import { Card } from "flowbite-react";
 import { FaUsersGear } from "react-icons/fa6";
 import { useQuery } from "react-query";
 import { GetRolesList } from "../Services/SvRols";
-import { Role } from "../Types/Roles";
+import { ListaRoles } from "../Types/Roles";
 const RoleCounter = () => {
-  const { data: Roles } = useQuery<Role[], Error>(
+  const { data: Roles } = useQuery<ListaRoles, Error>(
     ["RoleList", Date],
     () => GetRolesList(),
     {
@@ -12,7 +12,7 @@ const RoleCounter = () => {
     }
   );
 
-  const counter = Roles?.length;
+  const counter =Roles?.roles.length;
 
   return (
     <>
