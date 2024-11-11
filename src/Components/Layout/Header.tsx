@@ -7,12 +7,14 @@ import { useLocation } from "react-router";
 const Header = () => {
   const [openSide, setOpenSide] = useState<boolean>(false);
 
+  const logginURL =  import.meta.env.VITE_API_AUTH_URL;
+
   const location = useLocation();
 
   const goToLogin = () => {
     const params = new URLSearchParams(location.search);
-    const redirectUrl = params.get("redirect") || "https://user-manage-snowy.vercel.app";
-    window.location.href = `https://indentity-server-login.vercel.app/?redirect=${encodeURIComponent(redirectUrl)}`;
+    const redirectUrl = params.get("redirect") || "";
+    window.location.href = `${logginURL}/?redirect=${encodeURIComponent(redirectUrl)}`;
   };
   return (
     <>
