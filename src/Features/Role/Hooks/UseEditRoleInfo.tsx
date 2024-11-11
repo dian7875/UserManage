@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
-import { putEditRol } from "../../Services/SvRols";
-import { ApiError } from "../../../../Types/GlobalTypes";
-import { roles } from "../../Types/Roles";
+import { putEditRol } from "../Services/SvRols";
+import { ApiError } from "../../../Types/GlobalTypes";
+import { roles } from "../Types/Roles";
 
 const UseEditRoleInfo = () => {
   const queryClient = useQueryClient();

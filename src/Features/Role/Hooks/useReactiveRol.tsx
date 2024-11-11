@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
-import { reactivateRol } from "../../Services/SvRols"; 
-import { ApiError } from "../../../../Types/GlobalTypes";
+import { reactivateRol } from "../Services/SvRols"; 
+import { ApiError } from "../../../Types/GlobalTypes";
 
 const UseReactivateRole = () => {
   const queryClient = useQueryClient();

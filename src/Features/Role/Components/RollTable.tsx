@@ -8,18 +8,20 @@ import RolsRows from "./RolsRows";
 
 const RollTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const [limit, setLimit] = useState<number>(5);
   const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   const { data: Roles } = useQuery<ListaRoles, Error>(
-    ["RoleList", Date],
-    () => GetRolesList(),
+    ["RoleList", Date, currentPage, limit],
+    () => GetRolesList(currentPage, limit),
     {
-      staleTime: 600, 
+      staleTime: 600,
     }
   );
+
+  const MaxPage = Math.ceil((Roles?.totalCount ?? 0) / limit);
 
   return (
     <>
@@ -42,10 +44,10 @@ const RollTable = () => {
             </Table.Body>
           </Table>
           <div className="w-full flex justify-between items-center">
-            <SltLimit total={100} />
+            <SltLimit total={Roles?.totalCount||0} setLimit={setLimit} />
             <Pagination
               currentPage={currentPage}
-              totalPages={30}
+              totalPages={MaxPage}
               onPageChange={onPageChange}
               showIcons
               previousLabel="Anterior"

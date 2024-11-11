@@ -2,7 +2,7 @@ import { Modal, FloatingLabel, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { roles } from "../../Types/Roles";
-import UseEditRoleInfo from "../../Screens/Hooks/UseEditRoleInfo";
+import UseEditRoleInfo from "../../Hooks/UseEditRoleInfo";
 
 const MDEditInfo = ({
   open,

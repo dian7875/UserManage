@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
-import { deactivateRol } from "../../Services/SvRols";
-import { ApiError } from "../../../../Types/GlobalTypes";
+import { deactivateRol } from "../Services/SvRols";
+import { ApiError } from "../../../Types/GlobalTypes";
 
 const UseDeleteRole = () => {
   const queryClient = useQueryClient();

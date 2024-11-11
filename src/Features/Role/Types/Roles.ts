@@ -7,5 +7,5 @@ export type roles = {
 
 export type ListaRoles = {
   roles: roles[];
-  TotalCount: number;
+  totalCount: number;
 };

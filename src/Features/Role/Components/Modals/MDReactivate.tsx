@@ -1,7 +1,7 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseReactivateRole from "../../Screens/Hooks/useReactiveRol";
+import UseReactivateRole from "../../Hooks/useReactiveRol";
 
 const MDReactivate = ({
   open,

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
-import { postNewRol } from "../../Services/SvRols";
+import { postNewRol } from "../Services/SvRols";
 import toast from "react-hot-toast";
-import { ApiError } from "../../../../Types/GlobalTypes";
-import { roles } from "../../Types/Roles";
+import { ApiError } from "../../../Types/GlobalTypes";
+import { roles } from "../Types/Roles";
 
 const UseCreateNewRole = () => {
   const queryClient = useQueryClient();

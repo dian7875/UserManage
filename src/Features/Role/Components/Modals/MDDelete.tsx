@@ -1,7 +1,7 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseDeleteRole from "../../Screens/Hooks/UseDeleteRole";
+import UseDeleteRole from "../../Hooks/UseDeleteRole";
 
 const MDDelete = ({
   open,

@@ -30,28 +30,35 @@ const RolsRows = ({ Role }: { Role: roles }) => {
             >
               <LuFileEdit size={24} />
             </button>
-            <button
-              type="button"
-              title="Reactivar Rol"
-              className="hover:text-yellow-400"
-              onClick={() => setOpenR(true)}
-            >
-              <MdRestoreFromTrash size={27} />
-            </button>
-            <button
-              type="button"
-              title="Desactivar Rol"
-              className=" hover:text-red-800"
-              onClick={() => setOpenD(true)}
-            >
-              <RiDeleteBin5Fill size={24} />
-            </button>
+            {Role.isActive ? (
+              <>
+                <button
+                  type="button"
+                  title="Reactivar Rol"
+                  className="hover:text-yellow-400"
+                  onClick={() => setOpenR(true)}
+                >
+                  <MdRestoreFromTrash size={27} />
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  title="Desactivar Rol"
+                  className=" hover:text-red-800"
+                  onClick={() => setOpenD(true)}
+                >
+                  <RiDeleteBin5Fill size={24} />
+                </button>
+              </>
+            )}
           </div>
         </Table.Cell>
       </Table.Row>
       <MDDelete open={openD} setOpen={setOpenD} id={Role.id} />
       <MDEditInfo open={openE} setOpen={setOpenE} Role={Role} />
-      <MDReactivate open={openR} setOpen={setOpenR} id={Role.id}/>
+      <MDReactivate open={openR} setOpen={setOpenR} id={Role.id} />
     </>
   );
 };
