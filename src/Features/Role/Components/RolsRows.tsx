@@ -1,23 +1,25 @@
 import { Table } from "flowbite-react";
 import { useState } from "react";
 import { LuFileEdit } from "react-icons/lu";
-import { CiBoxList } from "react-icons/ci";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { MdRestoreFromTrash } from "react-icons/md";
 import MDDelete from "./Modals/MDDelete";
 import MDEditInfo from "./Modals/MDEditInfo";
-import MDEditPermissionsList from "./Modals/MDEditPermissionsList";
-import { Role } from "../Types/Roles";
+import { roles } from "../Types/Roles";
+import MDReactivate from "./Modals/MDReactivate";
 
-const RolsRows = ({ Role }: { Role: Role }) => {
-  const [openEL, setOpenEL] = useState(false);
+const RolsRows = ({ Role }: { Role: roles }) => {
+  const [openR, setOpenR] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [openE, setOpenE] = useState(false);
+
+  const roleStatus = Role.isActive ? "Activo" : "Inactivo";
   return (
     <>
       <Table.Row className="h-20 ">
         <Table.Cell>{Role.id} </Table.Cell>
         <Table.Cell>{Role.name} </Table.Cell>
-        <Table.Cell>Pendiente</Table.Cell>
+        <Table.Cell>{roleStatus}</Table.Cell>
         <Table.Cell>
           <div className="flex items-center justify-center gap-5">
             <button
@@ -30,15 +32,15 @@ const RolsRows = ({ Role }: { Role: Role }) => {
             </button>
             <button
               type="button"
-              title="Editar Permisos del Rol"
-              className=" hover:text-yellow-400"
-              onClick={() => setOpenEL(true)}
+              title="Reactivar Rol"
+              className="hover:text-yellow-400"
+              onClick={() => setOpenR(true)}
             >
-              <CiBoxList size={24} />
+              <MdRestoreFromTrash size={27} />
             </button>
             <button
               type="button"
-              title="Reactivar Usuario"
+              title="Desactivar Rol"
               className=" hover:text-red-800"
               onClick={() => setOpenD(true)}
             >
@@ -49,7 +51,7 @@ const RolsRows = ({ Role }: { Role: Role }) => {
       </Table.Row>
       <MDDelete open={openD} setOpen={setOpenD} id={Role.id} />
       <MDEditInfo open={openE} setOpen={setOpenE} Role={Role} />
-      <MDEditPermissionsList open={openEL} setOpen={setOpenEL} />
+      <MDReactivate open={openR} setOpen={setOpenR} id={Role.id}/>
     </>
   );
 };

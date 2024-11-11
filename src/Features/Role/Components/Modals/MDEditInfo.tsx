@@ -1,7 +1,7 @@
 import { Modal, FloatingLabel, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
-import { Role } from "../../Types/Roles";
+import { roles } from "../../Types/Roles";
 import UseEditRoleInfo from "../../Screens/Hooks/UseEditRoleInfo";
 
 const MDEditInfo = ({
@@ -11,9 +11,9 @@ const MDEditInfo = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  Role: Role;
+  Role: roles;
 }) => {
-  const { register, handleSubmit, reset } = useForm<Role>({
+  const { register, handleSubmit, reset } = useForm<roles>({
     defaultValues: {
       id: Role.id,
       name: Role.name,
@@ -23,11 +23,13 @@ const MDEditInfo = ({
 
   const { mutate: editRole } = UseEditRoleInfo();
 
-  const onSubmit = (data: Role) => {
+  const onSubmit = (data: roles) => {
+
+    console.log("Datos del rol para editar:", data);
     editRole(data, {
       onSuccess: () => {
-        setOpen(false);
-        reset();
+        setOpen(false);  
+        reset();  
       },
     });
   };
@@ -38,18 +40,10 @@ const MDEditInfo = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" flex flex-col gap-4">
           <div>
-            <FloatingLabel
-              variant="outlined"
-              label="Nombre"
-              {...register("name")}
-            />
+            <FloatingLabel variant="outlined" label="Nombre" {...register("name")} />
           </div>
           <div>
-            <FloatingLabel
-              variant="outlined"
-              label="Descripcion"
-              {...register("description")}
-            />
+            <FloatingLabel variant="outlined" label="Descripcion" {...register("description")} />
           </div>
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-center gap-5">
@@ -66,3 +60,4 @@ const MDEditInfo = ({
 };
 
 export default MDEditInfo;
+
