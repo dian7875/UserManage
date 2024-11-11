@@ -1,9 +1,10 @@
 import axios, { AxiosError } from "axios";
 import api from "../../../Services/ApiConfig";
-import { Role } from "../Types/Roles";
+import {  roles } from "../Types/Roles";
 import { ErrorResponse } from "../../../Types/GlobalTypes";
 
-const postNewRol = async (data: Role) => {
+const postNewRol = async (data: roles) => {
+  console.log("Enviando los siguientes datos:", data); 
   try {
     const response = await api.post("Rol", data);
     return response.status;
@@ -21,28 +22,11 @@ const postNewRol = async (data: Role) => {
     throw error;
   }
 };
-const putEditRol = async (data: Role) => {
+const putEditRol = async (data: roles) => {
   try {
-    const response = await api.put(`Rol/${data.id}`, data);
-    return response.status;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ErrorResponse>;
-      if (axiosError.response) {
-        console.error("Error:", axiosError.response.data.message);
-      } else {
-        console.error("Error:", axiosError.message);
-      }
-    } else {
-      console.error("Error desconocido:", error);
-    }
-    throw error;
-  }
-};
-const deletetRol = async (id: number) => {
-  try {
-    const response = await api.delete(`Rol/${id}`);
-    return response.status;
+
+    const response = await api.patch(`Rol/${data.id}`, data);
+    return response.status; 
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
@@ -58,18 +42,53 @@ const deletetRol = async (id: number) => {
   }
 };
 
-const GetRolesList = async (page?: number, limit?: number) => {
+const deactivateRol = async (id: number) => {
   try {
+    const response = await api.patch(`Rol/deactivate/${id}`);
+    return response.status; 
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+      if (axiosError.response) {
+        console.error("Error:", axiosError.response.data.message);
+      } else {
+        console.error("Error:", axiosError.message);
+      }
+    } else {
+      console.error("Error desconocido:", error);
+    }
+    throw error; 
+  }
+};
+
+const reactivateRol = async (id: number) => {
+  try {
+    const response = await api.patch(`Rol/reactivate/${id}`);  
+    return response.status; 
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+      if (axiosError.response) {
+        console.error("Error:", axiosError.response.data.message);
+      } else {
+        console.error("Error:", axiosError.message);
+      }
+    } else {
+      console.error("Error desconocido:", error);
+    }
+    throw error; 
+  }
+};
+
+
+const GetRolesList = async (pageNumber?: number, pageSize?: number) => {
     const params: { [key: string]: string | number | undefined } = {
-      page,
-      limit,
+      pageNumber,
+      pageSize,
     };
     const response = await api.get("Rol", { params });
     return response.data;
-  } catch (error) {
-    console.error("Error to get pending requests:", error);
-    throw error;
-  }
+  
 };
+export { postNewRol, GetRolesList, putEditRol, deactivateRol, reactivateRol };
 
-export { postNewRol, GetRolesList, putEditRol, deletetRol };

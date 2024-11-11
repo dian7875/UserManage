@@ -1,4 +1,6 @@
-const SltLimit = ({ total }: { total: number }) => {
+import { Dispatch, SetStateAction } from "react";
+
+const SltLimit = ({ total, setLimit }: { total: number, setLimit:Dispatch<SetStateAction<number>> }) => {
   return (
     <>
       <p>
@@ -8,6 +10,7 @@ const SltLimit = ({ total }: { total: number }) => {
           id="Limit"
           title="Resultados por página"
           className=" bg-inherit border-none rounded-lg"
+          onChange={(event)=>setLimit(Number(event.target.value))}
         >
           <option value={5}>5</option>
           <option value={10}>10</option>

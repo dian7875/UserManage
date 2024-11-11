@@ -17,14 +17,14 @@ const RollLists = () => {
       <section className="w-full flex flex-col justify-center items-center mt-12">
         <div className=" w-4/5 flex flex-col gap-5">
           <div className=" flex justify-between">
-            <Button color="dark" onClick={() => setOpen(true)}>
-              Añadir nuevo rol
-            </Button>
             <TextInput
               placeholder="Buscar rol"
               className=" w-64"
               rightIcon={FaSearchengin}
             />
+            <Button color="dark" onClick={() => setOpen(true)}>
+              Añadir nuevo rol
+            </Button>
           </div>
           <RollTable />
         </div>

@@ -1,13 +1,12 @@
-export interface Role {
+export type roles = {
   id: number;
   name: string;
   description: string;
   isActive: boolean;
 }
 
-export interface RolesResponse {
+export type ListaRoles = {
+  roles: roles[];
   totalCount: number;
-  pageNumber: number;
-  pageSize: number;
-  roles: Role[];
-}
+};
+
