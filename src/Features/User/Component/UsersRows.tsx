@@ -1,4 +1,4 @@
-import { Table, Checkbox } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { useState } from "react";
 import { TbEditCircle } from "react-icons/tb";
 import MDEditUserRol from "./Modals/MDEditUserRol";
@@ -24,11 +24,9 @@ const UsersRows = ({ User }: { User: User }) => {
           {User.lastname2}{" "}
         </Table.Cell>
         <Table.Cell>{User.phone} </Table.Cell>
+        <Table.Cell>{User.rolId}</Table.Cell>
         <Table.Cell>Pendiente</Table.Cell>
-        <Table.Cell>Pendiente</Table.Cell>
-        <Table.Cell>
-          <Checkbox checked readOnly />
-        </Table.Cell>
+        <Table.Cell>{User.isActive ? "Activo" : "Inactivo"}</Table.Cell>
         <Table.Cell>
           <div className="flex items-center justify-center gap-5">
             <button
@@ -58,9 +56,9 @@ const UsersRows = ({ User }: { User: User }) => {
           </div>
         </Table.Cell>
       </Table.Row>
-      <MDEditUserRol open={openE} setOpen={setOpenE} />
-      <MDUpUser open={openU} setOpen={setOpenU} />
-      <MDDowUser open={openD} setOpen={setOpenD} id={0} />
+      <MDEditUserRol open={openE} setOpen={setOpenE} userId={User.id}  />
+      <MDUpUser open={openU} setOpen={setOpenU} userId={User.id}/>
+      <MDDowUser open={openD} setOpen={setOpenD} userId={User.id} />
     </>
   );
 };

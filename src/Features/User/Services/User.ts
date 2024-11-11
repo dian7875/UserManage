@@ -9,6 +9,7 @@ export type User = {
     lastname2: string;
     password:string;
     birthDate: Date;
+    isActive: Boolean;
     rolId:number
   };
 

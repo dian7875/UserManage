@@ -90,5 +90,5 @@ const GetRolesList = async (pageNumber?: number, pageSize?: number) => {
     return response.data;
   
 };
-
 export { postNewRol, GetRolesList, putEditRol, deactivateRol, reactivateRol };
+

@@ -1,14 +1,31 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { enableUser } from "../../Services/SvUsers";
+import { useQueryClient } from "react-query";
 
 const MDUpUser = ({
   open,
   setOpen,
+  userId
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  userId:number
 }) => {
+
+  const queryClient = useQueryClient(); 
+
+  const onConfirm = async (userId: number) => {
+    try {
+      await enableUser(userId);
+      setOpen(false);
+      queryClient.invalidateQueries('UserList');
+    } catch (error) {
+      console.error("Error al habilitar usuario:", error);
+    }
+  };
+
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup size="sm">
       <Modal.Body className=" flex flex-col items-center justify-center mt-7">
@@ -19,7 +36,7 @@ const MDUpUser = ({
         <Button color="gray" tabIndex={2} onClick={() => setOpen(false)}>
           Cancelar
         </Button>
-        <Button color="dark" type="submit">
+        <Button color="dark" type="submit" onClick={()=>onConfirm(userId)}>
           Confirmar
         </Button>
       </Modal.Footer>

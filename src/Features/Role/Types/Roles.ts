@@ -9,3 +9,4 @@ export type ListaRoles = {
   roles: roles[];
   totalCount: number;
 };
+
