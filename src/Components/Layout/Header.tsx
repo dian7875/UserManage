@@ -12,7 +12,6 @@ const Header = () => {
 
   return (
     <>
-      {currentUser && currentUser.name !== "" && (
         <>
           <header
             className=" flex items-center justify-between w-full h-20 bg-black sticky
@@ -46,7 +45,6 @@ const Header = () => {
           </header>
           <Navbar openSide={visible} setOpenSide={handleClose} />
         </>
-      )}
     </>
   );
 };
