@@ -156,7 +156,7 @@ const getProfile = async () => {
 
 const logOut = async () => {
   try {
-    const response = await api.get("auth/logout");
+    const response = await api.post("auth/logout");
     const user = response.data;
     return user;
   } catch (error: unknown) {
