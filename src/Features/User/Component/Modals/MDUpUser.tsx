@@ -1,29 +1,21 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { enableUser } from "../../Services/SvUsers";
-import { useQueryClient } from "react-query";
+import useReactiveUser from "../../Hooks/useReactiveUser";
 
 const MDUpUser = ({
   open,
   setOpen,
-  userId
+  userId,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  userId:number
+  userId: number;
 }) => {
+  const { mutate: reactive, isLoading } = useReactiveUser();
 
-  const queryClient = useQueryClient(); 
-
-  const onConfirm = async (userId: number) => {
-    try {
-      await enableUser(userId);
-      setOpen(false);
-      queryClient.invalidateQueries('UserList');
-    } catch (error) {
-      console.error("Error al habilitar usuario:", error);
-    }
+  const onConfirm = () => {
+    reactive(userId, { onSuccess: () => setOpen(false) });
   };
 
   return (
@@ -36,7 +28,12 @@ const MDUpUser = ({
         <Button color="gray" tabIndex={2} onClick={() => setOpen(false)}>
           Cancelar
         </Button>
-        <Button color="dark" type="submit" onClick={()=>onConfirm(userId)}>
+        <Button
+          color="dark"
+          type="submit"
+          onClick={onConfirm}
+          disabled={isLoading}
+        >
           Confirmar
         </Button>
       </Modal.Footer>

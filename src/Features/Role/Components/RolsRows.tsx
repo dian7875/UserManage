@@ -30,7 +30,7 @@ const RolsRows = ({ Role }: { Role: roles }) => {
             >
               <LuFileEdit size={24} />
             </button>
-            {Role.isActive ? (
+            {!Role.isActive ? (
               <>
                 <button
                   type="button"

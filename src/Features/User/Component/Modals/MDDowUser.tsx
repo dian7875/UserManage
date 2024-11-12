@@ -1,31 +1,22 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { disableUser } from "../../Services/SvUsers";
-import { useQueryClient } from "react-query";
+import UseDownUser from "../../Hooks/UseDownUser";
 
 const MDDowUser = ({
   open,
   setOpen,
-  userId
+  userId,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  userId:number
+  userId: number;
 }) => {
+  const { mutate: desactive, isLoading } = UseDownUser();
 
-  const queryClient = useQueryClient(); 
-
-  const onConfirm = async (userId: number) => {
-    try {
-      await disableUser(userId);
-      setOpen(false);
-      queryClient.invalidateQueries('UserList');
-    } catch (error) {
-      console.error("Error al deshabilitar usuario:", error);
-    }
+  const onConfirm = () => {
+    desactive(userId, { onSuccess: () => setOpen(false) });
   };
-
 
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup size="sm">
@@ -37,7 +28,12 @@ const MDDowUser = ({
         <Button color="gray" tabIndex={2} onClick={() => setOpen(false)}>
           Cancelar
         </Button>
-        <Button color="dark" type="submit" onClick={()=>onConfirm(userId)}>
+        <Button
+          color="dark"
+          type="submit"
+          onClick={onConfirm}
+          disabled={isLoading}
+        >
           Confirmar
         </Button>
       </Modal.Footer>

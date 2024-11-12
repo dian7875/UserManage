@@ -11,13 +11,13 @@ const UseNewUser = () => {
     mutationFn: (data: User) =>
       toast.promise(postNewUser(data), {
         loading: "Guardando...",
-        success: <span>Exito, usuario añadido</span>,
+        success: <span>Éxito, usuario añadido</span>,
         error: (error: ApiError) => (
           <span>Error en la creación: {error.message}</span>
         ),
       }),
     onSuccess() {
-      queryClient.invalidateQueries("RoleList");
+      queryClient.invalidateQueries("UserList");
     },
   });
 };

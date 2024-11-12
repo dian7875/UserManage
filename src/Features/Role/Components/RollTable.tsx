@@ -25,7 +25,6 @@ const RollTable = () => {
 
   return (
     <>
-
       {Roles?.roles.length == 0 ? (
         <span className="h-96 items-center justify-center flex">
           No existen Roles
@@ -37,6 +36,7 @@ const RollTable = () => {
               <Table.HeadCell>ID del rol</Table.HeadCell>
               <Table.HeadCell>Nombre</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
+              <Table.HeadCell></Table.HeadCell>
             </Table.Head>
             <Table.Body className="h-96 dark:bg-gray-800">
               {Roles?.roles.map((role) => (
@@ -45,7 +45,7 @@ const RollTable = () => {
             </Table.Body>
           </Table>
           <div className="w-full flex justify-between items-center">
-            <SltLimit total={Roles?.totalCount||0} setLimit={setLimit} />
+            <SltLimit total={Roles?.totalCount || 0} setLimit={setLimit} />
             <Pagination
               currentPage={currentPage}
               totalPages={MaxPage}

@@ -1,43 +1,23 @@
-import { useState } from "react";
 import { changeRolUser } from "../Services/SvUsers";
-import { useQueryClient } from "react-query";  
-
-interface UseEditUserRoleProps {
-  id: number;
-  roleId: number;
-}
+import { useMutation, useQueryClient } from "react-query";
+import { EditUserRole } from "../Services/User";
+import toast from "react-hot-toast";
+import { ApiError } from "../../../Types/GlobalTypes";
 
 const useChangeUserRole = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const queryClient = useQueryClient(); 
-
-  const editUserRole = async ({ id, roleId }: UseEditUserRoleProps) => {
-    setIsLoading(true);
-    setError(null);
-    setIsSuccess(false);
-
-    try {
-      const status = await changeRolUser({ id, roleId });
-      if (status === 204) {
-        setIsSuccess(true);
-        queryClient.invalidateQueries('UserList');
-        queryClient.invalidateQueries('RoleList');
-      }
-    } catch (err) {
-      setError("Hubo un error al cambiar el rol del usuario.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return {
-    isLoading,
-    error,
-    isSuccess,
-    editUserRole,
-  };
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: EditUserRole) =>
+      toast.promise(changeRolUser(data), {
+        loading: "Guardando...",
+        success: <span>Éxito, se cambio el rol correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error en la edición: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("UserList");
+    },
+  });
 };
-
 export default useChangeUserRole;

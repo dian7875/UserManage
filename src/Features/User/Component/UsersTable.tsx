@@ -2,31 +2,32 @@ import { Pagination, Table } from "flowbite-react";
 import UsersRows from "./UsersRows";
 import { useState } from "react";
 import SltLimit from "../../../Components/SltLimit";
-import { User } from "../Services/User";
+import { UsersLits } from "../Services/User";
 import { useQuery } from "react-query";
 import { GetUserList } from "../Services/SvUsers";
 
 const UsersTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(5);
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const { data: Users } = useQuery<User[], Error>(
+  const { data: Users } = useQuery<UsersLits, Error>(
     ["UserList", Date],
-    () => GetUserList(),
+    () => GetUserList(currentPage, limit),
     {
       staleTime: 600,
     }
   );
 
+  const MaxPage = Math.ceil((Users?.totalCount ?? 0) / limit);
+
   return (
     <>
-      {Users?.length == 0 ? (
-        <span>
-          No existen usuarios
-        </span>
+      {Users && Users?.usuarios.length == 0 ? (
+        <span>No existen usuarios</span>
       ) : (
         <>
           <Table className=" text-center" hoverable>
@@ -43,14 +44,16 @@ const UsersTable = () => {
             </Table.Head>
             <Table.Body className="h-96 dark:bg-gray-800">
               {Users &&
-                Users.map((user) => <UsersRows key={user.id} User={user} />)}
+                Users.usuarios.map((user) => (
+                  <UsersRows key={user.id} User={user} />
+                ))}
             </Table.Body>
           </Table>
           <div className=" w-full flex justify-between items-center">
-            <SltLimit total={100} />
+            <SltLimit total={Users?.totalCount || 0} setLimit={setLimit} />
             <Pagination
               currentPage={currentPage}
-              totalPages={30}
+              totalPages={MaxPage}
               onPageChange={onPageChange}
               showIcons
               previousLabel="Anterior"

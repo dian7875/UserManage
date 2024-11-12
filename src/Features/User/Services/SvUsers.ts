@@ -81,13 +81,11 @@ const changeRolUser = async (data: { id: number; roleId: number }) => {
   }
 };
 
-
-
-const GetUserList = async (page?: number, limit?: number) => {
+const GetUserList = async (pageNumber?: number, pageSize?: number) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
-      page,
-      limit,
+      pageNumber,
+      pageSize,
     };
     const response = await api.get("User", { params });
     return response.data;

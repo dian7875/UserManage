@@ -12,20 +12,15 @@ const MDEditUserRol = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   userId: number;
 }) => {
-  const [selectedRole, setSelectedRole] = useState<number | null>(null);
-  const { isLoading, error, isSuccess, editUserRole } = useChangeUserRole();
-
-  const handleConfirm = () => {
-    if (selectedRole !== null) {
-      editUserRole({ id: userId, roleId: selectedRole }).then(() => {
-        setOpen(false);  
-      });
-    }
-  };
-
-  const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value ? Number(e.target.value) : null;
-    setSelectedRole(value);
+  const [rol, setRol] = useState<number>(1);
+  const { mutate: changeRol, isLoading } = useChangeUserRole();
+  const onConfirm = () => {
+    changeRol(
+      { id: userId, roleId: rol },
+      {
+        onSuccess: () => setOpen(false),
+      }
+    );
   };
 
   return (
@@ -34,17 +29,23 @@ const MDEditUserRol = ({
       <Modal.Body>
         <div>
           <Label value="Rol" />
-          <Select name="Role" title="Role" onChange={handleRoleChange} value={selectedRole || ""}>
+          <Select
+            name="Role"
+            title="Role"
+            onChange={(event) => {
+              setRol(Number(event.target.value));
+            }}
+          >
             <OPTRole2 />
           </Select>
-          {error && <p className="text-red-500">{error}</p>}
-          {isSuccess && <p className="text-green-500">¡Rol cambiado con éxito!</p>}
         </div>
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">
-        <Button color="gray" onClick={() => setOpen(false)} disabled={isLoading}>Cancelar</Button>
-        <Button color="dark" onClick={handleConfirm} disabled={isLoading || selectedRole === null}>
-          {isLoading ? "Cargando..." : "Confirmar"}
+        <Button color="gray" onClick={() => setOpen(false)}>
+          Cancelar
+        </Button>
+        <Button color="dark" onClick={onConfirm} disabled={isLoading} >
+          Confirmar
         </Button>
       </Modal.Footer>
     </Modal>
