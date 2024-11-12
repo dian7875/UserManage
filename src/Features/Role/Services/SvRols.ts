@@ -4,7 +4,6 @@ import {  roles } from "../Types/Roles";
 import { ErrorResponse } from "../../../Types/GlobalTypes";
 
 const postNewRol = async (data: roles) => {
-  console.log("Enviando los siguientes datos:", data); 
   try {
     const response = await api.post("Rol", data);
     return response.status;

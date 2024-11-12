@@ -24,8 +24,6 @@ const MDEditInfo = ({
   const { mutate: editRole } = UseEditRoleInfo();
 
   const onSubmit = (data: roles) => {
-
-    console.log("Datos del rol para editar:", data);
     editRole(data, {
       onSuccess: () => {
         setOpen(false);  

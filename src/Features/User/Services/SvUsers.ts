@@ -133,7 +133,52 @@ const enableUser = async (userId: number) => {
   }
 };
 
+const getProfile = async () => {
+  try {
+    const response = await api.get("User/profile");
+    const user = response.data;
+    return user;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al iniciar sesión:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al iniciar sesión"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+const logOut = async () => {
+  try {
+    const response = await api.get("Auth/logout");
+    const user = response.data;
+    return user;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al cerrar sesión:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al cerrar sesión"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+
 export { 
+  logOut,
+  getProfile,
   postNewUser, 
   GetUserList, 
   changeRolUser, 

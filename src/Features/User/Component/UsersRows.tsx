@@ -12,7 +12,6 @@ const UsersRows = ({ User }: { User: User }) => {
   const [openE, setOpenE] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [openU, setOpenU] = useState(false);
-  console.table(User);
   return (
     <>
       <Table.Row className="h-20 ">
@@ -26,7 +25,7 @@ const UsersRows = ({ User }: { User: User }) => {
         <Table.Cell>{User.rol}</Table.Cell>
         <Table.Cell>{formatToDMY(User.dateRegistered)} </Table.Cell>
         <Table.Cell>
-          <Checkbox checked={User.isActive} />
+          <Checkbox readOnly checked={User.isActive} />
         </Table.Cell>
         <Table.Cell>
           <div className="flex items-center justify-center gap-5">
