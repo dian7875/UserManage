@@ -174,6 +174,25 @@ const logOut = async () => {
     }
   }
 };
+const getStatistics = async () => {
+  try {
+    const response = await axios.get(`/User/statistics/summary`);
+    return response.data; 
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+      if (axiosError.response) {
+        
+        console.error("Error:", axiosError.response.data.message);
+      } else {
+        console.error("Error:", axiosError.message);
+      }
+    } else {
+      console.error("Error desconocido:", error);
+    }
+    throw error; 
+  }
+};
 
 
 export { 
@@ -185,5 +204,6 @@ export {
   deleteUser, 
   editUser,
   disableUser,
-  enableUser 
+  enableUser,
+  getStatistics
 };
