@@ -15,14 +15,14 @@ const UsersTable = () => {
   };
 
   const { data: Users } = useQuery<UsersLits, Error>(
-    ["UserList", Date],
+    ["UserList", currentPage, limit],
     () => GetUserList(currentPage, limit),
     {
       staleTime: 600,
     }
   );
 
-  const MaxPage = Math.ceil((Users?.totalCount ?? 0) / limit);
+  const MaxPage = Math.ceil((Users?.totalCount ?? 0) / 5);
 
   return (
     <>
@@ -36,7 +36,7 @@ const UsersTable = () => {
               <Table.HeadCell>Cedula</Table.HeadCell>
               <Table.HeadCell>Nombre</Table.HeadCell>
               <Table.HeadCell>Apellidos</Table.HeadCell>
-              <Table.HeadCell>Numero de Telefono</Table.HeadCell>
+              <Table.HeadCell>Numero de Teléfono</Table.HeadCell>
               <Table.HeadCell>Rol</Table.HeadCell>
               <Table.HeadCell>Fecha de Registro</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
