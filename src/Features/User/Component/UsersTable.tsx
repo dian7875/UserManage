@@ -22,7 +22,7 @@ const UsersTable = () => {
     }
   );
 
-  const MaxPage = Math.ceil((Users?.totalCount ?? 0) / 5);
+  const MaxPage = Math.ceil((Users?.totalCount || 0) / limit);
 
   return (
     <>
