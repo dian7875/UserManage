@@ -11,7 +11,7 @@ const Header = () => {
 
   const { visible, showSidebar, handleClose } = useContext(SidebarContext);
 
-  const { mutate: logOut } = UseLogOut();
+
   
   const logginURL = import.meta.env.VITE_API_AUTH_URL;
   const ClientURL = import.meta.env.VITE_API_CLIENT_URL;
@@ -22,9 +22,6 @@ const Header = () => {
     )}`;
   };
 
-  const onConfirm = () => {
-    logOut();
-  };
 
   return (
     <>
