@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import {useMemo, useState } from "react";
 import UserContext from "../UserContex/UserContext";
 import { User } from "../UserContex/UserContexType";
-import UseGetProfile from "../../Features/User/Hooks/UseGetProfile";
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLogged, setIsLogged] = useState<boolean>(() => {
@@ -12,12 +11,6 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     return user ? JSON.parse(user) : null;
   });
 
-  const getProfile = UseGetProfile();
-
-  useEffect(() => {
-    getProfile.mutate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const contextValue = useMemo(
     () => ({
