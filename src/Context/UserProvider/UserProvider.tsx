@@ -26,7 +26,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const token = urlParams.get("token");
 
     if (token) {
-      localStorage.setItem("authToken", token);
+      localStorage.setItem("jwt", token);
 
       const newUrl = ClientURL;
 
