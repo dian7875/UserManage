@@ -10,6 +10,7 @@ window.addEventListener("message", (event) => {
     return;
   }
   console.log("Token:", event.data);
+  localStorage.setItem("Token", event.data);
 });
 
 export { GetStats };
