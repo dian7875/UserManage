@@ -4,15 +4,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "./Navbar";
 import UserContext from "../../Context/UserContex/UserContext";
 import SidebarContext from "../../Context/NavbarContext/NavbarContext";
-import UseLogOut from "../../Features/User/Hooks/UseLogOut";
 
 const Header = () => {
   const { currentUser } = useContext(UserContext);
 
   const { visible, showSidebar, handleClose } = useContext(SidebarContext);
-
-
-  
   const logginURL = import.meta.env.VITE_API_AUTH_URL;
   const ClientURL = import.meta.env.VITE_API_CLIENT_URL;
 
@@ -21,8 +17,6 @@ const Header = () => {
       ClientURL
     )}`;
   };
-
-
   return (
     <>
       <>
