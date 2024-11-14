@@ -12,7 +12,7 @@ const Navbar = ({
   const { handleNavigation, handleClose } = useContext(SidebarContext);
   return (
     <>
-      <Drawer open={openSide} onClose={() => setOpenSide(false)}>
+      <Drawer className=" z-50" open={openSide} onClose={() => setOpenSide(false)}>
         <Drawer.Header
           title="Gestión de usuarios y roles"
           titleIcon={() => (

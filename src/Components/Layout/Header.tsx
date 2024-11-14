@@ -30,7 +30,7 @@ const Header = () => {
       <>
         <header
           className=" flex items-center justify-between w-full h-20 bg-black sticky
-      dark:bg-gray-900 z-50"
+      dark:bg-gray-900 z-40"
         >
           <div
             className="text-white ml-4 hover:scale-105 cursor-pointer"
