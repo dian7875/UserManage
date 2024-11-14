@@ -1,11 +1,10 @@
 import { Avatar, DarkThemeToggle, Dropdown } from "flowbite-react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "./Navbar";
 import UserContext from "../../Context/UserContex/UserContext";
 import SidebarContext from "../../Context/NavbarContext/NavbarContext";
 import UseLogOut from "../../Features/User/Hooks/UseLogOut";
-import UseGetProfile from "../../Features/User/Hooks/UseGetProfile";
 
 const Header = () => {
   const { currentUser } = useContext(UserContext);
@@ -14,12 +13,14 @@ const Header = () => {
 
   const { mutate: logOut } = UseLogOut();
   
-  const getProfile = UseGetProfile();
-  
-  useEffect(() => {
-    getProfile.mutate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
+  const logginURL = import.meta.env.VITE_API_AUTH_URL;
+  const ClientURL = import.meta.env.VITE_API_CLIENT_URL;
+
+  const goToLogin = () => {
+    window.location.href = `${logginURL}/?redirect=${encodeURIComponent(
+      ClientURL
+    )}`;
+  };
 
   const onConfirm = () => {
     logOut();
@@ -54,7 +55,7 @@ const Header = () => {
               <Dropdown.Item>Dashboard</Dropdown.Item>
               <Dropdown.Item>Editar Perfil</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={onConfirm}>Cerrar Sesión</Dropdown.Item>
+              <Dropdown.Item onClick={goToLogin}>Cerrar Sesión</Dropdown.Item>
             </Dropdown>
           </div>
         </header>
